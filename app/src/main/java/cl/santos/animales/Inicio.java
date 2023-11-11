@@ -12,7 +12,9 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,11 +34,42 @@ public class Inicio extends AppCompatActivity {
         setContentView(R.layout.activity_inicio);
         ImageButton btnMapa = findViewById(R.id.Mapa);
         ImageButton btnMas = findViewById(R.id.btnmas);
+        ImageButton btnSalir = findViewById(R.id.salir);
 
         btnMapa.setOnClickListener(v -> {
             Intent intent = new Intent(Inicio.this, MapsActivity.class);
             startActivity(intent);
         });
+        // ...
+
+        btnSalir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth auth = FirebaseAuth.getInstance();
+
+                if (auth.getCurrentUser() != null) {
+                    // Obtén el correo del usuario actualmente autenticado
+                    String correoUsuario = auth.getCurrentUser().getEmail();
+
+                    // Muestra el mensaje de salida
+                    Toast.makeText(Inicio.this, "Saliendo de " + correoUsuario, Toast.LENGTH_SHORT).show();
+
+                    // Cierra sesión
+                    auth.signOut();
+
+                    // Redirige a la pantalla de inicio de sesión
+                    Intent intent = new Intent(Inicio.this, InicioSesion.class);
+                    startActivity(intent);
+                    finish(); // Finaliza la actividad actual
+                } else {
+                    // No hay usuario autenticado, realiza la redirección directamente
+                    Intent intent = new Intent(Inicio.this, InicioSesion.class);
+                    startActivity(intent);
+                    finish(); // Finaliza la actividad actual
+                }
+            }
+        });
+
         btnMas.setOnClickListener(v -> {
             Intent intent = new Intent(Inicio.this, MainActivity.class);
             startActivity(intent);

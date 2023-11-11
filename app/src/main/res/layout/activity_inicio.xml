@@ -34,31 +34,44 @@
 
     <ImageButton
         android:id="@+id/Mapa"
-        android:layout_width="163dp"
-        android:layout_height="159dp"
+        android:layout_width="127dp"
+        android:layout_height="122dp"
         android:backgroundTint="#232323"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.866"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.972"
+        app:layout_constraintVertical_bias="0.973"
         app:srcCompat="@drawable/mapa__1_" />
 
     <ImageButton
+        android:id="@+id/salir"
+        android:layout_width="127dp"
+        android:layout_height="122dp"
+        android:backgroundTint="#232323"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.978"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.973"
+        app:srcCompat="@drawable/flecha" />
+
+    <ImageButton
         android:id="@+id/btnmas"
-        android:layout_width="179dp"
-        android:layout_height="171dp"
+        android:layout_width="127dp"
+        android:layout_height="122dp"
         android:background="@drawable/_168819"
         android:backgroundTint="#232323"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.068"
+        app:layout_constraintHorizontal_bias="0.021"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.994"
+        app:layout_constraintVertical_bias="0.973"
         app:srcCompat="@drawable/_000_f_610024683_mdafubfor5thjfswjhhwwkbrikzyqm0p" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
