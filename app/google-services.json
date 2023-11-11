@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "616440252654",
+    "project_id": "alimento-9f42a",
+    "storage_bucket": "alimento-9f42a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:616440252654:android:8b1c60a5134752bbb4cbff",
+        "android_client_info": {
+          "package_name": "cl.santos.animales"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXxv2GStueGYWaEVbNpJr8xyAgh5SK6D4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
