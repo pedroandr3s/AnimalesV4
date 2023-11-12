@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
@@ -31,7 +32,7 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".Splash"
+            android:name=".InicioSesion"
             android:exported="false" />
         <activity
             android:name=".DatosOtro"
@@ -49,7 +50,7 @@
             android:name=".DatosPerro"
             android:exported="false" />
         <activity
-            android:name=".InicioSesion"
+            android:name=".Splash"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

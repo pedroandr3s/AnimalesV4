@@ -4,6 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:backgroundTint="@color/white"
     tools:context=".Splash">
 
+    <ImageView
+        android:id="@+id/carga"
+        android:layout_width="591dp"
+        android:layout_height="500dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/_13a3272124cc57ba9e9fb7f59e9ab3b" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="231dp"
+        android:layout_height="80dp"
+        android:text="Pedro Vera"
+        android:textColor="#FFFFFF"
+        android:textSize="23sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.722"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.632" />
 </androidx.constraintlayout.widget.ConstraintLayout>

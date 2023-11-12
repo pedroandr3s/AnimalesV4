@@ -76,6 +76,17 @@ public class InicioSesion extends AppCompatActivity {
                 }
             }
         });
+        botonregistro2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(InicioSesion.this, Inicio.class);
+                startActivity(intent);
+                finish();
+            }
+
+
+        });
+
 
         botoniniciarsesion.setOnClickListener(new View.OnClickListener() {
             @Override
