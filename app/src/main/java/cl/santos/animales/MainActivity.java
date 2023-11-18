@@ -22,8 +22,7 @@ public class MainActivity extends AppCompatActivity {
         ImageButton botonGato = findViewById(R.id.ibGato);
         ImageButton botonCanario = findViewById(R.id.ibCanario);
 
-        // Carga el GIF utilizando Glide
-        Glide.with(this).asGif().load(R.drawable._32c2495abbd9ec400f29ac549170c77).into(botonCanario);
+         Glide.with(this).asGif().load(R.drawable._32c2495abbd9ec400f29ac549170c77).into(botonCanario);
 
         // Configura un OnClickListener para el ImageButton
         botonOtro.setOnClickListener(v -> {
