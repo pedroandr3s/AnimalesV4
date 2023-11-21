@@ -1,19 +1,22 @@
 package cl.santos.animales;
 
 import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.app.DatePickerDialog;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.TimePicker;
 import android.widget.TextView;
-import androidx.appcompat.app.AppCompatActivity;
-import java.util.Calendar;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.Calendar;
 
 public class Alarma extends AppCompatActivity {
     private Button btnSeleccionarFechaHora;
@@ -43,9 +46,6 @@ public class Alarma extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 programarAlarma();
-                Intent intent = new Intent(Alarma.this, Inicio.class);
-                startActivity(intent);
-                finish();
             }
         });
     }
@@ -87,19 +87,23 @@ public class Alarma extends AppCompatActivity {
     }
 
     private void programarAlarma() {
-        // Aquí debes implementar la lógica para programar la alarma utilizando la fecha y hora seleccionadas (selectedDateTime).
-        // Esto puede implicar el uso de AlarmManager y PendingIntent, similar a tu código original para programar la alarma.
-        // Asegúrate de definir correctamente el Intent que debe ejecutarse cuando suene la alarma.
-
-        // Ejemplo:
+        // Obtener una instancia de AlarmManager
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+
+        // Crear un Intent que se enviará cuando suene la alarma
         Intent intent = new Intent(this, AlarmReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
 
-        // Aquí configura el calendario con selectedDateTime y programa la alarma.
+        // Configurar el calendario con la fecha y hora seleccionadas
         Calendar calendar = selectedDateTime;
 
         // Programar la alarma
         alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+
+        // Mostrar un mensaje con Toast
+        Toast.makeText(this, "Alarma programada", Toast.LENGTH_SHORT).show();
+
+        // Agregar logs de depuración
+        Log.d("Alarma", "Alarma programada para: " + calendar.getTime().toString());
     }
 }

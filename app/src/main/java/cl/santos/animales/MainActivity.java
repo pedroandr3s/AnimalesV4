@@ -24,12 +24,11 @@ public class MainActivity extends AppCompatActivity {
 
          Glide.with(this).asGif().load(R.drawable._32c2495abbd9ec400f29ac549170c77).into(botonCanario);
 
-        // Configura un OnClickListener para el ImageButton
-        botonOtro.setOnClickListener(v -> {
-            // Crear un Intent para iniciar la actividad DatosOtroActivity
-            Intent intent = new Intent(MainActivity.this, DatosPerro.class);
-            startActivity(intent);
-        });
+         botonOtro.setOnClickListener(v -> {
+             // Crear un Intent para iniciar la actividad DatosOtroActivity
+             Intent intent = new Intent(MainActivity.this, DatosPerro.class);
+             startActivity(intent);
+         });
         botonPerro.setOnClickListener(v -> {
             // Crear un Intent para iniciar la actividad DatosPerro
             Intent intent = new Intent(MainActivity.this, DatosPerro.class);

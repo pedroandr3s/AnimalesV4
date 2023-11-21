@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "cl.santos.animales"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "cl.santos.animales"
@@ -37,8 +37,15 @@ android {
 }
 
 dependencies {
-    implementation ("com.github.bumptech.glide:glide:4.12.0")
-    annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+
+    testImplementation("junit:junit:4.13.2")
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    implementation("com.github.bumptech.glide:glide:4.12.0")
+    implementation("com.google.firebase:firebase-messaging:23.3.1")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.12.0")
     implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
     implementation(platform("com.google.firebase:firebase-bom:32.4.0"))
     implementation("com.google.firebase:firebase-auth")
