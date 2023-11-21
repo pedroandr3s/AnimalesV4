@@ -20,8 +20,8 @@ public class AlarmReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         Log.d("alimento", "¡Alarma recibida!");
 
-        String title = "¡Alarma!";
-        String message = "Es hora de realizar el mantenimiento.";
+        String title = "¡Alimenta a tu mascota!";
+        String message = "ta muerto de hambre alimentalo hermano";
         mostrarNotificacion(context.getApplicationContext(), title, message);
 
         // Enviar notificación mediante FCM
