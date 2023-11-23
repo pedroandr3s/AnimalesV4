@@ -13,57 +13,106 @@
         android:id="@+id/digitalClock"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:textSize="40sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- TextViews para mostrar la fecha y hora seleccionadas -->
-    <TextView
-        android:id="@+id/textViewFechaSeleccionada"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/digitalClock"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
-
-    <TextView
-        android:id="@+id/textViewHoraSeleccionada"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/textViewFechaSeleccionada"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp"/>
 
     <!-- Botón para seleccionar la fecha y hora -->
     <!-- Botón para guardar la alarma -->
 
     <Button
-        android:id="@+id/btnSeleccionarFechaHora"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Seleccionar Fecha y Hora"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewHoraSeleccionada"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
         android:id="@+id/btnGuardarAlarma"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="79dp"
         android:text="Guardar Alarma"
-        app:layout_constraintTop_toBottomOf="@+id/btnSeleccionarFechaHora"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/digitalClock"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <LinearLayout
+        android:layout_width="318dp"
+        android:layout_height="448dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.592"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <Button
+            android:id="@+id/btnSeleccionarHora1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Seleccionar Primera alarma" />
+
+        <TextView
+            android:id="@+id/textViewHoraSeleccionada1"
+            android:layout_width="105dp"
+            android:layout_height="0dp"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/btnSeleccionarHora2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Seleccionar Primera alarma" />
+
+        <TextView
+            android:id="@+id/textViewHoraSeleccionada2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/btnSeleccionarHora3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Seleccionar Primera alarma" />
+
+        <TextView
+            android:id="@+id/textViewHoraSeleccionada3"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/btnSeleccionarHora4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Seleccionar Primera alarma" />
+
+        <TextView
+            android:id="@+id/textViewHoraSeleccionada4"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/btnSeleccionarHora5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Seleccionar Primera alarma" />
+
+        <TextView
+            android:id="@+id/textViewHoraSeleccionada5"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

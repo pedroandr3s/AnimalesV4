@@ -1,7 +1,6 @@
 package cl.santos.animales;
 
 import android.app.AlarmManager;
-import android.app.DatePickerDialog;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Intent;
@@ -9,7 +8,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -19,91 +17,131 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.Calendar;
 
 public class Alarma extends AppCompatActivity {
-    private Button btnSeleccionarFechaHora;
-    private Button btnGuardarAlarma;
-    private TextView textViewFechaSeleccionada;
-    private TextView textViewHoraSeleccionada;
-    private Calendar selectedDateTime = Calendar.getInstance();
+    private Button btnSeleccionarHora1, btnSeleccionarHora2, btnSeleccionarHora3, btnSeleccionarHora4, btnSeleccionarHora5, btnGuardarAlarma;
+    private TextView textViewHoraSeleccionada1, textViewHoraSeleccionada2, textViewHoraSeleccionada3, textViewHoraSeleccionada4, textViewHoraSeleccionada5;
+    private Calendar[] selectedDateTime = new Calendar[5];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alarma);
 
-        btnSeleccionarFechaHora = findViewById(R.id.btnSeleccionarFechaHora);
+        // Inicializar botones y horas seleccionadas
+        btnSeleccionarHora1 = findViewById(R.id.btnSeleccionarHora1);
+        btnSeleccionarHora2 = findViewById(R.id.btnSeleccionarHora2);
+        btnSeleccionarHora3 = findViewById(R.id.btnSeleccionarHora3);
+        btnSeleccionarHora4 = findViewById(R.id.btnSeleccionarHora4);
+        btnSeleccionarHora5 = findViewById(R.id.btnSeleccionarHora5);
         btnGuardarAlarma = findViewById(R.id.btnGuardarAlarma);
-        textViewFechaSeleccionada = findViewById(R.id.textViewFechaSeleccionada);
-        textViewHoraSeleccionada = findViewById(R.id.textViewHoraSeleccionada);
 
-        btnSeleccionarFechaHora.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mostrarSelectorFechaHora();
-            }
-        });
+        textViewHoraSeleccionada1 = findViewById(R.id.textViewHoraSeleccionada1);
+        textViewHoraSeleccionada2 = findViewById(R.id.textViewHoraSeleccionada2);
+        textViewHoraSeleccionada3 = findViewById(R.id.textViewHoraSeleccionada3);
+        textViewHoraSeleccionada4 = findViewById(R.id.textViewHoraSeleccionada4);
+        textViewHoraSeleccionada5 = findViewById(R.id.textViewHoraSeleccionada5);
+
+        // Inicializar el array de horas seleccionadas
+        for (int i = 0; i < 5; i++) {
+            selectedDateTime[i] = Calendar.getInstance();
+        }
+
+        // Configurar eventos de clic para cada botón
+        setButtonClickEvent(btnSeleccionarHora1, textViewHoraSeleccionada1, 0);
+        setButtonClickEvent(btnSeleccionarHora2, textViewHoraSeleccionada2, 1);
+        setButtonClickEvent(btnSeleccionarHora3, textViewHoraSeleccionada3, 2);
+        setButtonClickEvent(btnSeleccionarHora4, textViewHoraSeleccionada4, 3);
+        setButtonClickEvent(btnSeleccionarHora5, textViewHoraSeleccionada5, 4);
+        Intent intent = getIntent();
+        if (intent != null) {
+            int botonSeleccionado = intent.getIntExtra("boton_seleccionado", 0);
+
+            // Mostrar u ocultar los botones según el botón seleccionado
+            mostrarOcultarBotones(botonSeleccionado);
+        }
 
         btnGuardarAlarma.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                programarAlarma();
+                programarAlarmas();
+            }
+        });
+
+        // Actualizar los TextViewHoraSeleccionadax con las horas iniciales
+        actualizarTextViewHora(textViewHoraSeleccionada1, 0);
+        actualizarTextViewHora(textViewHoraSeleccionada2, 1);
+        actualizarTextViewHora(textViewHoraSeleccionada3, 2);
+        actualizarTextViewHora(textViewHoraSeleccionada4, 3);
+        actualizarTextViewHora(textViewHoraSeleccionada5, 4);
+    }
+
+    private void setButtonClickEvent(final Button button, final TextView textView, final int index) {
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mostrarSelectorHora(textView, index);
             }
         });
     }
 
-    private void mostrarSelectorFechaHora() {
-        // Mostrar un DatePickerDialog para seleccionar la fecha
-        DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+    private void mostrarSelectorHora(final TextView textView, final int index) {
+        // Mostrar un TimePickerDialog para seleccionar la hora
+        TimePickerDialog timePickerDialog = new TimePickerDialog(Alarma.this, new TimePickerDialog.OnTimeSetListener() {
             @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                selectedDateTime.set(Calendar.YEAR, year);
-                selectedDateTime.set(Calendar.MONTH, month);
-                selectedDateTime.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                selectedDateTime[index].set(Calendar.HOUR_OF_DAY, hourOfDay);
+                selectedDateTime[index].set(Calendar.MINUTE, minute);
 
-                // Mostrar un TimePickerDialog para seleccionar la hora
-                TimePickerDialog timePickerDialog = new TimePickerDialog(Alarma.this, new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        selectedDateTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
-                        selectedDateTime.set(Calendar.MINUTE, minute);
-
-                        // Actualizar los TextView con la fecha y hora seleccionadas
-                        actualizarTextViewsFechaHora();
-                    }
-                }, selectedDateTime.get(Calendar.HOUR_OF_DAY), selectedDateTime.get(Calendar.MINUTE), true);
-
-                timePickerDialog.show();
+                // Actualizar el TextView con la hora seleccionada
+                actualizarTextViewHora(textView, index);
             }
-        }, selectedDateTime.get(Calendar.YEAR), selectedDateTime.get(Calendar.MONTH), selectedDateTime.get(Calendar.DAY_OF_MONTH));
+        }, selectedDateTime[index].get(Calendar.HOUR_OF_DAY), selectedDateTime[index].get(Calendar.MINUTE), true);
 
-        datePickerDialog.show();
+        timePickerDialog.show();
     }
 
-    private void actualizarTextViewsFechaHora() {
-        String fechaSeleccionada = android.text.format.DateFormat.format("dd-MM-yyyy", selectedDateTime).toString();
-        String horaSeleccionada = android.text.format.DateFormat.format("HH:mm", selectedDateTime).toString();
-
-        textViewFechaSeleccionada.setText("Fecha seleccionada: " + fechaSeleccionada);
-        textViewHoraSeleccionada.setText("Hora seleccionada: " + horaSeleccionada);
+    private void actualizarTextViewHora(TextView textView, int index) {
+        String horaSeleccionada = android.text.format.DateFormat.format("HH:mm", selectedDateTime[index]).toString();
+        textView.setText("La hora del botón " + (index + 1) + " (btnSeleccionarHora" + (index + 1) + ") es: " + horaSeleccionada);
     }
 
-    private void programarAlarma() {
+    private void programarAlarmas() {
         // Obtener una instancia de AlarmManager
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
         // Crear un Intent que se enviará cuando suene la alarma
         Intent intent = new Intent(this, AlarmReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
 
-        // Configurar el calendario con la fecha y hora seleccionadas
-        Calendar calendar = selectedDateTime;
+        for (int i = 0; i < 5; i++) {
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(this, i + 1, intent, PendingIntent.FLAG_IMMUTABLE);
 
-        // Programar la alarma
-        alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+            // Configurar el calendario con la fecha y hora seleccionadas
+            Calendar calendar = selectedDateTime[i];
+
+            // Programar cada alarma
+            alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+
+            // Agregar logs de depuración
+            Log.d("Alarma", "Alarma programada para el botón " + (i + 1) + " para: " + calendar.getTime().toString());
+        }
 
         // Mostrar un mensaje con Toast
-        Toast.makeText(this, "Alarma programada", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Alarmas programadas", Toast.LENGTH_SHORT).show();
+    }
 
-        // Agregar logs de depuración
-        Log.d("Alarma", "Alarma programada para: " + calendar.getTime().toString());
+    private void mostrarOcultarBotones(int botonSeleccionado) {
+        // Obtener referencias a los botones btnSeleccionarHora
+        Button[] botonesHora = new Button[]{
+                btnSeleccionarHora1, btnSeleccionarHora2, btnSeleccionarHora3, btnSeleccionarHora4, btnSeleccionarHora5
+        };
+
+        // Ocultar todos los botones primero
+        for (Button btn : botonesHora) {
+            btn.setVisibility(View.GONE);
+        }
+
+        // Mostrar solo los botones seleccionados
+        for (int i = 0; i < botonSeleccionado; i++) {
+            botonesHora[i].setVisibility(View.VISIBLE);
+        }
     }
 }

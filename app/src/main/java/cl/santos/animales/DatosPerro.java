@@ -121,6 +121,7 @@ public class DatosPerro extends AppCompatActivity {
                 btn3aldia.setText("3 al día ");
                 btn4aldia.setText("4 al día ");
                 btn5aldia.setText("5 al día ");
+
             }
         });
 
@@ -128,7 +129,34 @@ public class DatosPerro extends AppCompatActivity {
         Button botonAlimento3 = findViewById(R.id.btn3aldia);
         Button botonAlimento4 = findViewById(R.id.btn4aldia);
         Button botonAlimento5 = findViewById(R.id.btn5aldia);
+        botonAlimento2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                enviarInformacionAlActivitySiguiente(2);
 
+            }
+        });
+        botonAlimento3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                enviarInformacionAlActivitySiguiente(3);
+
+            }
+        });
+        botonAlimento4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                enviarInformacionAlActivitySiguiente(4);
+
+            }
+        });
+        botonAlimento5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                enviarInformacionAlActivitySiguiente(5);
+
+            }
+        });
         final Button siguienteButton = findViewById(R.id.Siguiente);
 
         View.OnClickListener alimentoClickListener = new View.OnClickListener() {
@@ -180,6 +208,12 @@ public class DatosPerro extends AppCompatActivity {
         });
     }
 
+    private void enviarInformacionAlActivitySiguiente(int botonSeleccionado) {
+        Intent intent = new Intent(DatosPerro.this, Alarma.class);
+        intent.putExtra("boton_seleccionado", botonSeleccionado);
+        startActivity(intent);
+        finish();
+    }
 }
 
 

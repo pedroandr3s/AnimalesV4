@@ -39,6 +39,14 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         sendNotification(remoteMessage.getData());
     }
 
+    @Override
+    public void onNewToken(String token) {
+        // Log del nuevo token
+        Log.d(TAG, "Token actualizado: " + token);
+
+        // Aquí puedes enviar el token a tu servidor, almacenarlo en SharedPreferences, etc.
+    }
+
     private void handleNow() {
     }
 
