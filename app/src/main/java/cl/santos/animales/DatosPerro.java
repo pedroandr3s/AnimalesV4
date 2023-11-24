@@ -3,6 +3,7 @@ package cl.santos.animales;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -133,30 +134,30 @@ public class DatosPerro extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 enviarInformacionAlActivitySiguiente(2);
-
             }
         });
+
         botonAlimento3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 enviarInformacionAlActivitySiguiente(3);
-
             }
         });
+
         botonAlimento4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 enviarInformacionAlActivitySiguiente(4);
-
             }
         });
+
         botonAlimento5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 enviarInformacionAlActivitySiguiente(5);
-
             }
         });
+
         final Button siguienteButton = findViewById(R.id.Siguiente);
 
         View.OnClickListener alimentoClickListener = new View.OnClickListener() {
@@ -211,9 +212,23 @@ public class DatosPerro extends AppCompatActivity {
     private void enviarInformacionAlActivitySiguiente(int botonSeleccionado) {
         Intent intent = new Intent(DatosPerro.this, Alarma.class);
         intent.putExtra("boton_seleccionado", botonSeleccionado);
+
+        if (botonSeleccionado == 2) {
+            intent.putExtra("cantidad_alimentacion", 2);
+        } else if (botonSeleccionado == 3) {
+            intent.putExtra("cantidad_alimentacion", 3);
+        } else if (botonSeleccionado == 4) {
+            intent.putExtra("cantidad_alimentacion", 4);
+        } else if (botonSeleccionado == 5) {
+            intent.putExtra("cantidad_alimentacion", 5);
+        }
+
         startActivity(intent);
         finish();
     }
+
+
+
 }
 
 
