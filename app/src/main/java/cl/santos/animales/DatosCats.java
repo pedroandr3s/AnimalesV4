@@ -6,15 +6,23 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class DatosCats extends AppCompatActivity {
     private boolean edadSeleccionada = false;
+    private EditText nombre;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_datos_cats);
         Button volverButton = findViewById(R.id.volver);
+        nombre = findViewById(R.id.nombregato);
+
 
         volverButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,11 +133,51 @@ public class DatosCats extends AppCompatActivity {
         siguienteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DatosCats.this,MainActivity.class);
+                guardarInformacionEnFirebase();
+
+                Intent intent = new Intent(DatosCats.this, Alarma.class);
                 startActivity(intent);
             }
         });
 
+    }
+
+    private void guardarInformacionEnFirebase() {
+        String Nombre = nombre.getText().toString();
+
+        // Inicializa la referencia a la base de datos Firebase
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference("Nombre");
+
+        // Crea un nuevo nodo con una clave única y establece los datos
+        DatabaseReference nuevoNombreRef = ref.push();
+        nuevoNombreRef.child("Nombre").setValue(Nombre, (databaseError, databaseReference) -> {
+            if (databaseError != null) {
+                // Handle the error here, e.g., Log.e("FirebaseError", databaseError.getMessage());
+                Toast.makeText(DatosCats.this, "Error al guardar los datos en Firebase", Toast.LENGTH_SHORT).show();
+            } else {
+                // Datos guardados con éxito
+                Toast.makeText(DatosCats.this, "Datos guardados correctamente en Firebase", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void enviarInformacionAlActivitySiguiente(int botonSeleccionado) {
+        Intent intent = new Intent(DatosCats.this, Alarma.class);
+        intent.putExtra("boton_seleccionado", botonSeleccionado);
+
+        if (botonSeleccionado == 2) {
+            intent.putExtra("cantidad_alimentacion", 2);
+        } else if (botonSeleccionado == 3) {
+            intent.putExtra("cantidad_alimentacion", 3);
+        } else if (botonSeleccionado == 4) {
+            intent.putExtra("cantidad_alimentacion", 4);
+        } else if (botonSeleccionado == 5) {
+            intent.putExtra("cantidad_alimentacion", 5);
+        }
+
+        startActivity(intent);
+        finish();
     }
 }
 
