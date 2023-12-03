@@ -19,21 +19,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <Button
         android:id="@+id/btnGuardarAlarma"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="79dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/button_custom_background"
         android:text="Guardar Alarma"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.938"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/digitalClock"
         app:layout_constraintVertical_bias="0.0" />
 
-
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="336dp"
         android:layout_height="478dp"
         android:gravity="center"
@@ -92,17 +94,16 @@
 
 
     <TextView
-        android:id="@+id/textViewCantidadAlimentacion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="42dp"
-        android:layout_marginBottom="18dp"
+        android:id="@+id/textViewValores"
+        android:layout_width="191dp"
+        android:layout_height="66dp"
         android:text="TextView"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnGuardarAlarma"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/digitalClock" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.213" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

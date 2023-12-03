@@ -3,11 +3,11 @@ package cl.santos.animales;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,14 +18,19 @@ import com.google.firebase.database.FirebaseDatabase;
 public class DatosPerro extends AppCompatActivity {
     private boolean edadSeleccionada = false;
     private EditText nombre;
+    private int numeroAlimentoSeleccionado;
+    private TextView textViewBotonPresionado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_datos_perro);
 
+        // Obtener la referencia del TextView
+        textViewBotonPresionado = findViewById(R.id.textViewBotonPresionado);
+
         Button volverButton = findViewById(R.id.Volver);
-        nombre= findViewById(R.id.nombreotro);
+        nombre = findViewById(R.id.nombreotro);
         volverButton.setOnClickListener(view -> {
             Intent intent = new Intent(DatosPerro.this, MainActivity.class);
             startActivity(intent);
@@ -122,9 +127,9 @@ public class DatosPerro extends AppCompatActivity {
                 btn3aldia.setText("3 al día ");
                 btn4aldia.setText("4 al día ");
                 btn5aldia.setText("5 al día ");
-
             }
         });
+        final TextView textViewBotonPresionado = findViewById(R.id.textViewBotonPresionado);
 
         Button botonAlimento2 = findViewById(R.id.btn2aldia);
         Button botonAlimento3 = findViewById(R.id.btn3aldia);
@@ -133,28 +138,33 @@ public class DatosPerro extends AppCompatActivity {
         botonAlimento2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                enviarInformacionAlActivitySiguiente(2);
+                numeroAlimentoSeleccionado = 2;
+                textViewBotonPresionado.setText("botonpresionado " + numeroAlimentoSeleccionado);
+                enviarInformacionAlActivitySiguiente(numeroAlimentoSeleccionado);
             }
         });
 
         botonAlimento3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                enviarInformacionAlActivitySiguiente(3);
+                numeroAlimentoSeleccionado = 3;
+                enviarInformacionAlActivitySiguiente(numeroAlimentoSeleccionado);
             }
         });
 
         botonAlimento4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                enviarInformacionAlActivitySiguiente(4);
+                numeroAlimentoSeleccionado = 4;
+                enviarInformacionAlActivitySiguiente(numeroAlimentoSeleccionado);
             }
         });
 
         botonAlimento5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                enviarInformacionAlActivitySiguiente(5);
+                numeroAlimentoSeleccionado = 5;
+                enviarInformacionAlActivitySiguiente(numeroAlimentoSeleccionado);
             }
         });
 
@@ -180,14 +190,9 @@ public class DatosPerro extends AppCompatActivity {
                 startActivity(intent);
 
                 guardarInformacionEnFirebase();
-
-
-
             }
         });
-
     }
-
 
     private void guardarInformacionEnFirebase() {
         String Nombre = nombre.getText().toString();
@@ -212,24 +217,7 @@ public class DatosPerro extends AppCompatActivity {
     private void enviarInformacionAlActivitySiguiente(int botonSeleccionado) {
         Intent intent = new Intent(DatosPerro.this, Alarma.class);
         intent.putExtra("boton_seleccionado", botonSeleccionado);
-
-        if (botonSeleccionado == 2) {
-            intent.putExtra("cantidad_alimentacion", 2);
-        } else if (botonSeleccionado == 3) {
-            intent.putExtra("cantidad_alimentacion", 3);
-        } else if (botonSeleccionado == 4) {
-            intent.putExtra("cantidad_alimentacion", 4);
-        } else if (botonSeleccionado == 5) {
-            intent.putExtra("cantidad_alimentacion", 5);
-        }
-
+        intent.putExtra("numero_alimento_seleccionado", numeroAlimentoSeleccionado);
         startActivity(intent);
-        finish();
     }
-
-
-
 }
-
-
-

@@ -27,16 +27,15 @@ public class Alarma extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alarma);
+        TextView textViewValores = findViewById(R.id.textViewValores);
+
         Intent intent = getIntent();
         int botonSeleccionado = intent.getIntExtra("boton_seleccionado", 0);
+        int numeroAlimentoSeleccionado = intent.getIntExtra("numero_alimento_seleccionado", 0);
 
-        int cantidadAlimentacion = intent.getIntExtra("cantidad_alimentacion", 0);
-
-// Referencia al TextView
-        TextView textViewCantidadAlimentacion = findViewById(R.id.textViewCantidadAlimentacion);
-
-// Asignar el valor al TextView
-        textViewCantidadAlimentacion.setText("Cantidad de alimentación: " + cantidadAlimentacion + " " + botonSeleccionado);
+// Mostrar los valores en el TextView
+        String texto = "Botón Seleccionado: " + botonSeleccionado + "\nNúmero de Alimento Seleccionado: " + numeroAlimentoSeleccionado;
+        textViewValores.setText(texto);
 
 
         btnSeleccionarHora1 = findViewById(R.id.btnSeleccionarHora1);
