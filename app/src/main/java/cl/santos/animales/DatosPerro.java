@@ -1,13 +1,11 @@
 package cl.santos.animales;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,32 +17,39 @@ public class DatosPerro extends AppCompatActivity {
     private boolean edadSeleccionada = false;
     private EditText nombre;
     private int numeroAlimentoSeleccionado;
-    private TextView textViewBotonPresionado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_datos_perro);
 
-        // Obtener la referencia del TextView
-        textViewBotonPresionado = findViewById(R.id.textViewBotonPresionado);
+        nombre = findViewById(R.id.nombreotro);
+
+        Button btn2 = findViewById(R.id.btn2aldia);
+        Button btn3 = findViewById(R.id.btn3aldia);
+        Button btn4 = findViewById(R.id.btn4aldia);
+        Button btn5 = findViewById(R.id.btn5aldia);
 
         Button volverButton = findViewById(R.id.Volver);
-        nombre = findViewById(R.id.nombreotro);
-        volverButton.setOnClickListener(view -> {
-            Intent intent = new Intent(DatosPerro.this, MainActivity.class);
-            startActivity(intent);
-            finish();
+        volverButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DatosPerro.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
         });
 
-        final LinearLayout lyEdad = findViewById(R.id.lyEdad);
-        final Button botonAlimento = findViewById(R.id.Alimento);
+        LinearLayout lyEdad = findViewById(R.id.lyEdad);
+        Button botonAlimento = findViewById(R.id.Alimento);
 
         Button botonEdad = findViewById(R.id.btnedad);
-        botonEdad.setOnClickListener(view -> {
-            // Hacer visible el LinearLayout "Edad"
-            lyEdad.setVisibility(View.VISIBLE);
-            edadSeleccionada = true;
+        botonEdad.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                lyEdad.setVisibility(View.VISIBLE);
+                edadSeleccionada = true;
+            }
         });
 
         Button botonOpcion1 = findViewById(R.id.bebe);
@@ -52,10 +57,10 @@ public class DatosPerro extends AppCompatActivity {
         Button botonOpcion3 = findViewById(R.id.viejo);
         Button botonOpcion4 = findViewById(R.id.adulto);
 
-        @SuppressLint("CutPasteId") final Button btn2aldia = findViewById(R.id.btn2aldia);
-        final Button btn3aldia = findViewById(R.id.btn3aldia);
-        final Button btn4aldia = findViewById(R.id.btn4aldia);
-        final Button btn5aldia = findViewById(R.id.btn5aldia);
+        Button btn2aldia = findViewById(R.id.btn2aldia);
+        Button btn3aldia = findViewById(R.id.btn3aldia);
+        Button btn4aldia = findViewById(R.id.btn4aldia);
+        Button btn5aldia = findViewById(R.id.btn5aldia);
 
         View.OnClickListener opcionClickListener = new View.OnClickListener() {
             @Override
@@ -71,7 +76,7 @@ public class DatosPerro extends AppCompatActivity {
         botonOpcion3.setOnClickListener(opcionClickListener);
         botonOpcion4.setOnClickListener(opcionClickListener);
 
-        final LinearLayout cantidadLayout = findViewById(R.id.lyAlimento);
+        LinearLayout cantidadLayout = findViewById(R.id.lyAlimento);
 
         botonAlimento.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,8 +89,6 @@ public class DatosPerro extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 botonAlimento.setVisibility(View.VISIBLE);
-
-                // Cambiar el texto de los botones
                 btn2aldia.setText("Solo leche materna");
                 btn3aldia.setText("Solo leche materna");
                 btn4aldia.setText("Solo leche materna");
@@ -97,7 +100,6 @@ public class DatosPerro extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 botonAlimento.setVisibility(View.VISIBLE);
-
                 btn2aldia.setText("2 al día ");
                 btn3aldia.setText("3 al día (recomendado)");
                 btn4aldia.setText("4 al día (recomendado)");
@@ -109,7 +111,6 @@ public class DatosPerro extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 botonAlimento.setVisibility(View.VISIBLE);
-
                 btn2aldia.setText("2 al día (recomendado)");
                 btn3aldia.setText("3 al día (recomendado)");
                 btn4aldia.setText("4 al día ");
@@ -121,74 +122,45 @@ public class DatosPerro extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 botonAlimento.setVisibility(View.VISIBLE);
-
-                // Cambiar el texto de los botones
                 btn2aldia.setText("2 al día (recomendado)");
                 btn3aldia.setText("3 al día ");
                 btn4aldia.setText("4 al día ");
                 btn5aldia.setText("5 al día ");
             }
         });
-        final TextView textViewBotonPresionado = findViewById(R.id.textViewBotonPresionado);
 
-        Button botonAlimento2 = findViewById(R.id.btn2aldia);
-        Button botonAlimento3 = findViewById(R.id.btn3aldia);
-        Button botonAlimento4 = findViewById(R.id.btn4aldia);
-        Button botonAlimento5 = findViewById(R.id.btn5aldia);
-        botonAlimento2.setOnClickListener(new View.OnClickListener() {
+        btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 numeroAlimentoSeleccionado = 2;
-                textViewBotonPresionado.setText("botonpresionado " + numeroAlimentoSeleccionado);
                 enviarInformacionAlActivitySiguiente(numeroAlimentoSeleccionado);
+                guardarInformacionEnFirebase();
             }
         });
 
-        botonAlimento3.setOnClickListener(new View.OnClickListener() {
+        btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 numeroAlimentoSeleccionado = 3;
                 enviarInformacionAlActivitySiguiente(numeroAlimentoSeleccionado);
+                guardarInformacionEnFirebase();
             }
         });
 
-        botonAlimento4.setOnClickListener(new View.OnClickListener() {
+        btn4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 numeroAlimentoSeleccionado = 4;
                 enviarInformacionAlActivitySiguiente(numeroAlimentoSeleccionado);
+                guardarInformacionEnFirebase();
             }
         });
 
-        botonAlimento5.setOnClickListener(new View.OnClickListener() {
+        btn5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 numeroAlimentoSeleccionado = 5;
                 enviarInformacionAlActivitySiguiente(numeroAlimentoSeleccionado);
-            }
-        });
-
-        final Button siguienteButton = findViewById(R.id.Siguiente);
-
-        View.OnClickListener alimentoClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                siguienteButton.setVisibility(View.VISIBLE);
-            }
-        };
-
-        botonAlimento5.setOnClickListener(alimentoClickListener);
-        botonAlimento4.setOnClickListener(alimentoClickListener);
-        botonAlimento2.setOnClickListener(alimentoClickListener);
-        botonAlimento3.setOnClickListener(alimentoClickListener);
-
-        siguienteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(DatosPerro.this, Alarma.class);
-
-                startActivity(intent);
-
                 guardarInformacionEnFirebase();
             }
         });
@@ -197,18 +169,14 @@ public class DatosPerro extends AppCompatActivity {
     private void guardarInformacionEnFirebase() {
         String Nombre = nombre.getText().toString();
 
-        // Inicializa la referencia a la base de datos Firebase
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference ref = database.getReference("Nombre");
 
-        // Crea un nuevo nodo con una clave única y establece los datos
         DatabaseReference nuevoNombreRef = ref.push();
         nuevoNombreRef.child("Nombre").setValue(Nombre, (databaseError, databaseReference) -> {
             if (databaseError != null) {
-                // Handle the error here, e.g., Log.e("FirebaseError", databaseError.getMessage());
                 Toast.makeText(DatosPerro.this, "Error al guardar los datos en Firebase", Toast.LENGTH_SHORT).show();
             } else {
-                // Datos guardados con éxito
                 Toast.makeText(DatosPerro.this, "Datos guardados correctamente en Firebase", Toast.LENGTH_SHORT).show();
             }
         });
@@ -216,7 +184,6 @@ public class DatosPerro extends AppCompatActivity {
 
     private void enviarInformacionAlActivitySiguiente(int botonSeleccionado) {
         Intent intent = new Intent(DatosPerro.this, Alarma.class);
-        intent.putExtra("boton_seleccionado", botonSeleccionado);
         intent.putExtra("numero_alimento_seleccionado", numeroAlimentoSeleccionado);
         startActivity(intent);
     }

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -23,20 +24,11 @@ public class Alarma extends AppCompatActivity {
     private Button btnGuardarAlarma;
     private List<Calendar> alarmas = new ArrayList<>();
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alarma);
         TextView textViewValores = findViewById(R.id.textViewValores);
-
-        Intent intent = getIntent();
-        int botonSeleccionado = intent.getIntExtra("boton_seleccionado", 0);
-        int numeroAlimentoSeleccionado = intent.getIntExtra("numero_alimento_seleccionado", 0);
-
-// Mostrar los valores en el TextView
-        String texto = "Botón Seleccionado: " + botonSeleccionado + "\nNúmero de Alimento Seleccionado: " + numeroAlimentoSeleccionado;
-        textViewValores.setText(texto);
-
+        btnGuardarAlarma = findViewById(R.id.btnGuardarAlarma);
 
         btnSeleccionarHora1 = findViewById(R.id.btnSeleccionarHora1);
         btnSeleccionarHora2 = findViewById(R.id.btnSeleccionarHora2);
@@ -44,38 +36,12 @@ public class Alarma extends AppCompatActivity {
         btnSeleccionarHora4 = findViewById(R.id.btnSeleccionarHora4);
         btnSeleccionarHora5 = findViewById(R.id.btnSeleccionarHora5);
 
-        btnGuardarAlarma = findViewById(R.id.btnGuardarAlarma);
-
-        btnSeleccionarHora1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mostrarSelectorHora(btnSeleccionarHora1);
-            }
-        });
-        btnSeleccionarHora2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mostrarSelectorHora(btnSeleccionarHora2);
-            }
-        });
-        btnSeleccionarHora3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mostrarSelectorHora(btnSeleccionarHora3);
-            }
-        });
-        btnSeleccionarHora4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mostrarSelectorHora(btnSeleccionarHora4);
-            }
-        });
-        btnSeleccionarHora5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mostrarSelectorHora(btnSeleccionarHora5);
-            }
-        });
+        // Hacer todos los botones invisibles inicialmente
+        btnSeleccionarHora1.setVisibility(View.INVISIBLE);
+        btnSeleccionarHora2.setVisibility(View.INVISIBLE);
+        btnSeleccionarHora3.setVisibility(View.INVISIBLE);
+        btnSeleccionarHora4.setVisibility(View.INVISIBLE);
+        btnSeleccionarHora5.setVisibility(View.INVISIBLE);
 
         btnGuardarAlarma.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,6 +49,78 @@ public class Alarma extends AppCompatActivity {
                 programarAlarmas();
                 Intent intent = new Intent(Alarma.this, Inicio.class);
                 startActivity(intent);
+            }
+        });
+
+        Intent intent = getIntent();
+        int botonSeleccionado = intent.getIntExtra("boton_seleccionado", 0);
+        int numeroAlimentoSeleccionado = intent.getIntExtra("numero_alimento_seleccionado", 0);
+
+        // Mostrar los valores en el TextView
+        String texto = "Número de Alimento Seleccionado: " + numeroAlimentoSeleccionado;
+        textViewValores.setText(texto);
+
+        // Ajustar la visibilidad de los botones según el valor de numeroAlimentoSeleccionado
+        switch (numeroAlimentoSeleccionado) {
+            case 2:
+                btnSeleccionarHora1.setVisibility(View.VISIBLE);
+                btnSeleccionarHora2.setVisibility(View.VISIBLE);
+                break;
+            case 3:
+                btnSeleccionarHora1.setVisibility(View.VISIBLE);
+                btnSeleccionarHora2.setVisibility(View.VISIBLE);
+                btnSeleccionarHora3.setVisibility(View.VISIBLE);
+                break;
+            case 4:
+                btnSeleccionarHora1.setVisibility(View.VISIBLE);
+                btnSeleccionarHora2.setVisibility(View.VISIBLE);
+                btnSeleccionarHora3.setVisibility(View.VISIBLE);
+                btnSeleccionarHora4.setVisibility(View.VISIBLE);
+                break;
+            case 5:
+                btnSeleccionarHora1.setVisibility(View.VISIBLE);
+                btnSeleccionarHora2.setVisibility(View.VISIBLE);
+                btnSeleccionarHora3.setVisibility(View.VISIBLE);
+                btnSeleccionarHora4.setVisibility(View.VISIBLE);
+                btnSeleccionarHora5.setVisibility(View.VISIBLE);
+                break;
+            default:
+                // Manejar el caso por defecto si es necesario
+                break;
+        }
+
+        btnSeleccionarHora1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mostrarSelectorHora(btnSeleccionarHora1);
+            }
+        });
+
+        btnSeleccionarHora2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mostrarSelectorHora(btnSeleccionarHora2);
+            }
+        });
+
+        btnSeleccionarHora3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mostrarSelectorHora(btnSeleccionarHora3);
+            }
+        });
+
+        btnSeleccionarHora4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mostrarSelectorHora(btnSeleccionarHora4);
+            }
+        });
+
+        btnSeleccionarHora5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mostrarSelectorHora(btnSeleccionarHora5);
             }
         });
     }
