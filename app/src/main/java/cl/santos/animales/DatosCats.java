@@ -16,12 +16,18 @@ import com.google.firebase.database.FirebaseDatabase;
 public class DatosCats extends AppCompatActivity {
     private boolean edadSeleccionada = false;
     private EditText nombre;
+    private int numeroAlimentoSeleccionado;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_datos_cats);
         Button volverButton = findViewById(R.id.volver);
         nombre = findViewById(R.id.nombregato);
+        Button btn2aldia = findViewById(R.id.btn2aldia);
+        Button btn3aldia = findViewById(R.id.btn3aldia);
+        Button btn4aldia = findViewById(R.id.btn4aldia);
+        Button btn5aldia = findViewById(R.id.btn5aldia);
 
 
         volverButton.setOnClickListener(new View.OnClickListener() {
@@ -50,10 +56,6 @@ public class DatosCats extends AppCompatActivity {
         Button botonOpcion2 = findViewById(R.id.adulto2);
         Button botonOpcion3 = findViewById(R.id.viejo);
 
-        final Button btn2aldia = findViewById(R.id.btn2aldia);
-        final Button btn3aldia = findViewById(R.id.btn3aldia);
-        final Button btn4aldia = findViewById(R.id.btn4aldia);
-        final Button btn5aldia = findViewById(R.id.btn5aldia);
 
         View.OnClickListener opcionClickListener = new View.OnClickListener() {
             @Override
@@ -111,32 +113,39 @@ public class DatosCats extends AppCompatActivity {
             }
         });
 
-        Button botonAlimento2 = findViewById(R.id.btn2aldia);
-        Button botonAlimento3 = findViewById(R.id.btn3aldia);
-        Button botonAlimento4 = findViewById(R.id.btn4aldia);
-        Button botonAlimento5 = findViewById(R.id.btn5aldia);
-
-        final Button siguienteButton = findViewById(R.id.siguiente);
-
-        View.OnClickListener alimentoClickListener = new View.OnClickListener() {
+        btn2aldia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                siguienteButton.setVisibility(View.VISIBLE);
-            }
-        };
-        botonAlimento5.setOnClickListener(alimentoClickListener);
-        botonAlimento4.setOnClickListener(alimentoClickListener);
-        botonAlimento2.setOnClickListener(alimentoClickListener);
-        botonAlimento3.setOnClickListener(alimentoClickListener);
-
-        siguienteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+                numeroAlimentoSeleccionado = 2;
+                enviarInformacionAlActivitySiguiente(numeroAlimentoSeleccionado);
                 guardarInformacionEnFirebase();
+            }
+        });
 
-                Intent intent = new Intent(DatosCats.this, Alarma.class);
-                startActivity(intent);
+        btn3aldia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                numeroAlimentoSeleccionado = 3;
+                enviarInformacionAlActivitySiguiente(numeroAlimentoSeleccionado);
+                guardarInformacionEnFirebase();
+            }
+        });
+
+        btn4aldia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                numeroAlimentoSeleccionado = 4;
+                enviarInformacionAlActivitySiguiente(numeroAlimentoSeleccionado);
+                guardarInformacionEnFirebase();
+            }
+        });
+
+        btn5aldia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                numeroAlimentoSeleccionado = 5;
+                enviarInformacionAlActivitySiguiente(numeroAlimentoSeleccionado);
+                guardarInformacionEnFirebase();
             }
         });
 
@@ -164,20 +173,8 @@ public class DatosCats extends AppCompatActivity {
 
     private void enviarInformacionAlActivitySiguiente(int botonSeleccionado) {
         Intent intent = new Intent(DatosCats.this, Alarma.class);
-        intent.putExtra("boton_seleccionado", botonSeleccionado);
-
-        if (botonSeleccionado == 2) {
-            intent.putExtra("cantidad_alimentacion", 2);
-        } else if (botonSeleccionado == 3) {
-            intent.putExtra("cantidad_alimentacion", 3);
-        } else if (botonSeleccionado == 4) {
-            intent.putExtra("cantidad_alimentacion", 4);
-        } else if (botonSeleccionado == 5) {
-            intent.putExtra("cantidad_alimentacion", 5);
-        }
-
+        intent.putExtra("numero_alimento_seleccionado", numeroAlimentoSeleccionado);
         startActivity(intent);
-        finish();
     }
 }
 

@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
          botonOtro.setOnClickListener(v -> {
              // Crear un Intent para iniciar la actividad DatosOtroActivity
-             Intent intent = new Intent(MainActivity.this, DatosPerro.class);
+             Intent intent = new Intent(MainActivity.this, DatosOtro.class);
              startActivity(intent);
          });
         botonPerro.setOnClickListener(v -> {

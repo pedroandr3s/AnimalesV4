@@ -16,6 +16,7 @@ import com.google.firebase.database.FirebaseDatabase;
     public class DatosPajaros extends AppCompatActivity {
         private boolean edadSeleccionada = false;
         private EditText nombre;
+        private int numeroAlimentoSeleccionado;
 
 
         @Override
@@ -24,17 +25,20 @@ import com.google.firebase.database.FirebaseDatabase;
             setContentView(R.layout.activity_datos_pajaros);
             Button volverButton = findViewById(R.id.volver2);
             nombre = findViewById(R.id.nombreotro3);
-
+            Button btn2aldia = findViewById(R.id.btn2aldia);
+            Button btn3aldia = findViewById(R.id.btn3aldia);
+            Button btn4aldia = findViewById(R.id.btn4aldia);
+            Button btn5aldia = findViewById(R.id.btn5aldia);
             volverButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(DatosPajaros.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(DatosPajaros.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            });
 
-        final LinearLayout lyEdad = findViewById(R.id.lyEdad);
+            final LinearLayout lyEdad = findViewById(R.id.lyEdad);
         final Button botonAlimento = findViewById(R.id.alimento2);
 
         Button botonEdad = findViewById(R.id.btnedad3);
@@ -49,12 +53,6 @@ import com.google.firebase.database.FirebaseDatabase;
 
         Button botonOpcion1 = findViewById(R.id.bebe);
         Button botonOpcion2 = findViewById(R.id.adulto);
-
-        final Button btn2aldia = findViewById(R.id.btn2aldia);
-        final Button btn3aldia = findViewById(R.id.btn3aldia);
-        final Button btn4aldia = findViewById(R.id.btn4aldia);
-        final Button btn5aldia = findViewById(R.id.btn5aldia);
-
         View.OnClickListener opcionClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -99,35 +97,42 @@ import com.google.firebase.database.FirebaseDatabase;
             }
         });
 
-        Button botonAlimento2 = findViewById(R.id.btn2aldia);
-        Button botonAlimento3 = findViewById(R.id.btn3aldia);
-        Button botonAlimento4 = findViewById(R.id.btn4aldia);
-        Button botonAlimento5 = findViewById(R.id.btn5aldia);
 
-        final Button siguienteButton = findViewById(R.id.siguiente2);
+            btn2aldia.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    numeroAlimentoSeleccionado = 2;
+                    enviarInformacionAlActivitySiguiente(numeroAlimentoSeleccionado);
+                    guardarInformacionEnFirebase();
+                }
+            });
 
-        View.OnClickListener alimentoClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+            btn3aldia.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    numeroAlimentoSeleccionado = 3;
+                    enviarInformacionAlActivitySiguiente(numeroAlimentoSeleccionado);
+                    guardarInformacionEnFirebase();
+                }
+            });
 
-                siguienteButton.setVisibility(View.VISIBLE);
-            }
-        };
-        botonAlimento5.setOnClickListener(alimentoClickListener);
-        botonAlimento4.setOnClickListener(alimentoClickListener);
-        botonAlimento2.setOnClickListener(alimentoClickListener);
-        botonAlimento3.setOnClickListener(alimentoClickListener);
+            btn4aldia.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    numeroAlimentoSeleccionado = 4;
+                    enviarInformacionAlActivitySiguiente(numeroAlimentoSeleccionado);
+                    guardarInformacionEnFirebase();
+                }
+            });
 
-        siguienteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                guardarInformacionEnFirebase();
-
-                Intent intent = new Intent(DatosPajaros.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
-
+            btn5aldia.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    numeroAlimentoSeleccionado = 5;
+                    enviarInformacionAlActivitySiguiente(numeroAlimentoSeleccionado);
+                    guardarInformacionEnFirebase();
+                }
+            });
         }
 
         private void guardarInformacionEnFirebase() {
@@ -152,19 +157,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
         private void enviarInformacionAlActivitySiguiente(int botonSeleccionado) {
             Intent intent = new Intent(DatosPajaros.this, Alarma.class);
-            intent.putExtra("boton_seleccionado", botonSeleccionado);
-
-            if (botonSeleccionado == 2) {
-                intent.putExtra("cantidad_alimentacion", 2);
-            } else if (botonSeleccionado == 3) {
-                intent.putExtra("cantidad_alimentacion", 3);
-            } else if (botonSeleccionado == 4) {
-                intent.putExtra("cantidad_alimentacion", 4);
-            } else if (botonSeleccionado == 5) {
-                intent.putExtra("cantidad_alimentacion", 5);
-            }
-
+            intent.putExtra("numero_alimento_seleccionado", numeroAlimentoSeleccionado);
             startActivity(intent);
-            finish();
         }
     }
