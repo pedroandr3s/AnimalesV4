@@ -99,33 +99,34 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(@NonNull GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker with title and snippet
-        LatLng sydney = new LatLng(-36.60071432009926, -72.1034417287954);
+        // Marcador 1
+        LatLng sydney = new LatLng(-36.60117926277594, -72.10419695939197);
         MarkerOptions markerOptions1 = new MarkerOptions()
                 .position(sydney)
                 .title("Petline Chillan")
-                .snippet("Gamero 399, 3780000 Chillán, Ñuble")
-                .snippet("http://www.petlinechile.cl/")
-                .snippet("+56422217710");// Agrega tu descripción aquí
+                .snippet("Gamero 399, 3780000 Chillán, Ñuble\nhttp://www.petlinechile.cl/\n+56422217710");
         mMap.addMarker(markerOptions1);
-        LatLng otroPunto = new LatLng(-33.432345, -70.667890);
+
+        // Marcador 2
+        LatLng otroPunto = new LatLng(-36.598611048972465, -72.10087070381662);
         MarkerOptions markerOptions2 = new MarkerOptions()
                 .position(otroPunto)
                 .title("OrangePet")
-                .snippet("Av. Ecuador 539, Chillán, Ñuble")
-                .snippet("https://orangepet.cl/")
-                .snippet("+56940924070");// Agrega tu descripción aquí
+                .snippet("Av. Ecuador 539, Chillán, Ñuble\nhttps://orangepet.cl/\n+56940924070");
         mMap.addMarker(markerOptions2);
+
+        // Marcador 3
         LatLng otroPuntito = new LatLng(-36.4266305319023, -71.96014076451395);
         MarkerOptions markerOptions3 = new MarkerOptions()
                 .position(otroPuntito)
                 .title("Los Regalones")
-                .snippet("Ernesto Riquelme 496-400, 3840406 San Carlos, Ñuble")
-                .snippet("https://losregalones.cl/")
-                .snippet("+569133");// Agrega tu descripción aquí
+                .snippet("Ernesto Riquelme 496-400, 3840406 San Carlos, Ñuble\nhttps://losregalones.cl/\n+569133");
         mMap.addMarker(markerOptions3);
+
+        // Mueve la cámara al primer marcador
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
+
 
     @Override
     protected void onDestroy() {
