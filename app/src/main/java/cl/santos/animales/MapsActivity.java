@@ -4,6 +4,8 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -19,6 +21,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import cl.santos.animales.databinding.ActivityMapsBinding;
@@ -125,6 +128,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Mueve la cámara al primer marcador
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
+            @Override
+            public android.view.View getInfoWindow(Marker marker) {
+                // Utiliza el diseño personalizado
+                android.view.View view = getLayoutInflater().inflate(R.layout.custom_infowindow_layout, null);
+
+                // Configura el contenido del infowindow
+                TextView titleTextView = view.findViewById(R.id.info_title);
+                titleTextView.setText(marker.getTitle());
+
+                TextView snippetTextView = view.findViewById(R.id.info_snippet);
+                snippetTextView.setText(marker.getSnippet());
+
+                return view;
+            }
+
+            @Override
+            public View getInfoContents(Marker marker) {
+                return null;  // Utiliza getInfoWindow para personalizar completamente el contenido
+            }
+        });
     }
 
 

@@ -1,0 +1,28 @@
+<!-- res/layout/custom_infowindow_layout.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp"
+    android:background="@android:color/white"> <!-- Fondo blanco -->
+
+    <TextView
+        android:id="@+id/info_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:textColor="@android:color/black" /> <!-- Letras negras -->
+
+    <TextView
+        android:id="@+id/info_snippet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:maxLines="3"
+        android:ellipsize="end"
+        android:textColor="@android:color/black" /> <!-- Letras negras -->
+
+</LinearLayout>
