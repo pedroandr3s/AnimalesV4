@@ -120,6 +120,7 @@ public class Inicio extends AppCompatActivity {
                                 } else if (which == 1) {
                                     eliminarMantenimiento(mantenimientoKey);
                                 }
+
                             }
                         });
                 builder.create().show();
@@ -129,7 +130,7 @@ public class Inicio extends AppCompatActivity {
 
     private void editarMantenimiento(final String mantenimientoKey) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Editar Mantenimiento");
+        builder.setTitle("Editar Nombre");
 
         final EditText nombreEditText = new EditText(this);
         nombreEditText.setHint("Nombre");

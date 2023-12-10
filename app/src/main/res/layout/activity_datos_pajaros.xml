@@ -54,24 +54,28 @@
             android:id="@+id/btn2aldia"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_custom_background"
             android:text="2 al dia " />
 
         <Button
             android:id="@+id/btn3aldia"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_custom_background"
             android:text="3 al dia " />
 
         <Button
             android:id="@+id/btn4aldia"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_custom_background"
             android:text="4 al dia" />
 
         <Button
             android:id="@+id/btn5aldia"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_custom_background"
             android:text="5 al dia" />
 
     </LinearLayout>
@@ -80,6 +84,7 @@
         android:id="@+id/alimento2"
         android:layout_width="130dp"
         android:layout_height="68dp"
+        android:background="@drawable/button_custom_background"
         android:text="Alimentos Al Dia"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -106,12 +111,14 @@
             android:id="@+id/bebe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_custom_background"
             android:text="bebé" />
 
         <Button
             android:id="@+id/adulto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_custom_background"
             android:text="Adulto" />
     </LinearLayout>
 
@@ -120,6 +127,7 @@
         android:layout_width="113dp"
         android:layout_height="61dp"
         android:layout_marginTop="332dp"
+        android:background="@drawable/button_custom_background"
         android:text="Edad"
         app:layout_constraintBottom_toBottomOf="@+id/Siguiente"
         app:layout_constraintEnd_toEndOf="parent"

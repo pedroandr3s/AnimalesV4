@@ -23,6 +23,7 @@
         android:id="@+id/volver"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/button_custom_background"
         android:text="Volver"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -71,6 +72,7 @@
         android:layout_width="113dp"
         android:layout_height="61dp"
         android:layout_marginTop="332dp"
+        android:background="@drawable/button_custom_background"
         android:text="Edad"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.127"
@@ -94,18 +96,21 @@
             android:id="@+id/bebe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_custom_background"
             android:text="menos de 6 meses" />
 
         <Button
             android:id="@+id/adulto2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_custom_background"
             android:text="entre 6 meses y 6 años" />
 
         <Button
             android:id="@+id/viejo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_custom_background"
             android:text="7 años o mas" />
 
     </LinearLayout>
@@ -127,24 +132,28 @@
             android:id="@+id/btn2aldia"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_custom_background"
             android:text="2 al dia " />
 
         <Button
             android:id="@+id/btn3aldia"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_custom_background"
             android:text="3 al dia " />
 
         <Button
             android:id="@+id/btn4aldia"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_custom_background"
             android:text="4 al dia" />
 
         <Button
             android:id="@+id/btn5aldia"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_custom_background"
             android:text="5 al dia" />
 
     </LinearLayout>
@@ -153,6 +162,7 @@
         android:id="@+id/alimento"
         android:layout_width="130dp"
         android:layout_height="68dp"
+        android:background="@drawable/button_custom_background"
         android:text="Alimentos Al Dia"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"

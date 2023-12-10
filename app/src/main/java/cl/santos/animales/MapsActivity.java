@@ -98,9 +98,33 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         mMap = googleMap;
-        // Puedes agregar configuraciones adicionales del mapa aquí si es necesario
 
-        // Ya que ahora recibimos actualizaciones de ubicación, no necesitas centrar el mapa en una ubicación estática aquí.
+        // Add a marker with title and snippet
+        LatLng sydney = new LatLng(-36.60071432009926, -72.1034417287954);
+        MarkerOptions markerOptions1 = new MarkerOptions()
+                .position(sydney)
+                .title("Petline Chillan")
+                .snippet("Gamero 399, 3780000 Chillán, Ñuble")
+                .snippet("http://www.petlinechile.cl/")
+                .snippet("+56422217710");// Agrega tu descripción aquí
+        mMap.addMarker(markerOptions1);
+        LatLng otroPunto = new LatLng(-33.432345, -70.667890);
+        MarkerOptions markerOptions2 = new MarkerOptions()
+                .position(otroPunto)
+                .title("OrangePet")
+                .snippet("Av. Ecuador 539, Chillán, Ñuble")
+                .snippet("https://orangepet.cl/")
+                .snippet("+56940924070");// Agrega tu descripción aquí
+        mMap.addMarker(markerOptions2);
+        LatLng otroPuntito = new LatLng(-36.4266305319023, -71.96014076451395);
+        MarkerOptions markerOptions3 = new MarkerOptions()
+                .position(otroPuntito)
+                .title("Los Regalones")
+                .snippet("Ernesto Riquelme 496-400, 3840406 San Carlos, Ñuble")
+                .snippet("https://losregalones.cl/")
+                .snippet("+569133");// Agrega tu descripción aquí
+        mMap.addMarker(markerOptions3);
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 
     @Override
