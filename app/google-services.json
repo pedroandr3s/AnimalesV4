@@ -1,13 +1,14 @@
 {
   "project_info": {
-    "project_number": "616440252654",
-    "project_id": "alimento-9f42a",
-    "storage_bucket": "alimento-9f42a.appspot.com"
+    "project_number": "856020083394",
+    "firebase_url": "https://nombreanimal-4f3e0-default-rtdb.firebaseio.com",
+    "project_id": "nombreanimal-4f3e0",
+    "storage_bucket": "nombreanimal-4f3e0.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:616440252654:android:8b1c60a5134752bbb4cbff",
+        "mobilesdk_app_id": "1:856020083394:android:c1ec688f8ef65280a6d15b",
         "android_client_info": {
           "package_name": "cl.santos.animales"
         }
@@ -15,7 +16,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDXxv2GStueGYWaEVbNpJr8xyAgh5SK6D4"
+          "current_key": "AIzaSyAroIS8KKFO8V2DDwrnmd4iV-2Q0vm5xbI"
         }
       ],
       "services": {
